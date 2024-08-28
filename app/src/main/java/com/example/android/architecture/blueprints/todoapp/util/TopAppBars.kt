@@ -25,6 +25,7 @@ import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -44,7 +45,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.android.architecture.blueprints.todoapp.R
-import com.google.accompanist.appcompattheme.AppCompatTheme
 
 @Composable
 fun TasksTopAppBar(
@@ -185,7 +185,7 @@ fun AddEditTaskTopAppBar(@StringRes title: Int, onBack: () -> Unit) {
 @Preview
 @Composable
 private fun TasksTopAppBarPreview() {
-    AppCompatTheme {
+    MaterialTheme {
         Surface {
             TasksTopAppBar({}, {}, {}, {}, {}, {})
         }
@@ -195,7 +195,7 @@ private fun TasksTopAppBarPreview() {
 @Preview
 @Composable
 private fun StatisticsTopAppBarPreview() {
-    AppCompatTheme {
+    MaterialTheme {
         Surface {
             StatisticsTopAppBar { }
         }
@@ -205,7 +205,7 @@ private fun StatisticsTopAppBarPreview() {
 @Preview
 @Composable
 private fun TaskDetailTopAppBarPreview() {
-    AppCompatTheme {
+    MaterialTheme {
         Surface {
             TaskDetailTopAppBar({ }, { })
         }
@@ -215,7 +215,7 @@ private fun TaskDetailTopAppBarPreview() {
 @Preview
 @Composable
 private fun AddEditTaskTopAppBarPreview() {
-    AppCompatTheme {
+    MaterialTheme {
         Surface {
             AddEditTaskTopAppBar(R.string.add_task) { }
         }

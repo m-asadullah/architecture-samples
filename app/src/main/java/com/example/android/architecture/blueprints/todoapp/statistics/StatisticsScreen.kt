@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Surface
@@ -38,7 +39,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.util.LoadingContent
 import com.example.android.architecture.blueprints.todoapp.util.StatisticsTopAppBar
-import com.google.accompanist.appcompattheme.AppCompatTheme
 
 @Composable
 fun StatisticsScreen(
@@ -110,7 +110,7 @@ private fun StatisticsContent(
 @Preview
 @Composable
 fun StatisticsContentPreview() {
-    AppCompatTheme {
+    MaterialTheme {
         Surface {
             StatisticsContent(
                 loading = false,
@@ -126,7 +126,7 @@ fun StatisticsContentPreview() {
 @Preview
 @Composable
 fun StatisticsContentEmptyPreview() {
-    AppCompatTheme {
+    MaterialTheme {
         Surface {
             StatisticsContent(
                 loading = false,

@@ -17,6 +17,7 @@
 package com.example.android.architecture.blueprints.todoapp.tasks
 
 import androidx.annotation.StringRes
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.isToggleable
@@ -30,16 +31,15 @@ import androidx.test.filters.MediumTest
 import com.example.android.architecture.blueprints.todoapp.HiltTestActivity
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.data.TaskRepository
-import com.google.accompanist.appcompattheme.AppCompatTheme
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
 
 /**
  * Integration test for the Task List screen.
@@ -255,7 +255,7 @@ class TasksScreenTest {
 
     private fun setContent() {
         composeTestRule.setContent {
-            AppCompatTheme {
+            MaterialTheme {
                 Surface {
                     TasksScreen(
                         viewModel = TasksViewModel(repository, SavedStateHandle()),
