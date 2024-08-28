@@ -132,7 +132,7 @@ private fun EditTaskContent(
                     .fillMaxWidth()
                     .then(screenPadding),
 
-            ) {
+                ) {
                 if (task != null) {
                     Checkbox(task.isCompleted, onTaskCheck)
                     Column {

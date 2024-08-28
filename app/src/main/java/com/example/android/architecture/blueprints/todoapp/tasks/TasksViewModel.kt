@@ -31,7 +31,6 @@ import com.example.android.architecture.blueprints.todoapp.tasks.TasksFilterType
 import com.example.android.architecture.blueprints.todoapp.util.Async
 import com.example.android.architecture.blueprints.todoapp.util.WhileUiSubscribed
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -40,6 +39,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * UiState for the task list screen.
@@ -80,9 +80,11 @@ class TasksViewModel @Inject constructor(
             Async.Loading -> {
                 TasksUiState(isLoading = true)
             }
+
             is Async.Error -> {
                 TasksUiState(userMessage = tasksAsync.errorMessage)
             }
+
             is Async.Success -> {
                 TasksUiState(
                     items = tasksAsync.data,
@@ -154,6 +156,7 @@ class TasksViewModel @Inject constructor(
                 ACTIVE_TASKS -> if (task.isActive) {
                     tasksToShow.add(task)
                 }
+
                 COMPLETED_TASKS -> if (task.isCompleted) {
                     tasksToShow.add(task)
                 }
@@ -170,12 +173,14 @@ class TasksViewModel @Inject constructor(
                     R.drawable.logo_no_fill
                 )
             }
+
             ACTIVE_TASKS -> {
                 FilteringUiInfo(
                     R.string.label_active, R.string.no_tasks_active,
                     R.drawable.ic_check_circle_96dp
                 )
             }
+
             COMPLETED_TASKS -> {
                 FilteringUiInfo(
                     R.string.label_completed, R.string.no_tasks_completed,

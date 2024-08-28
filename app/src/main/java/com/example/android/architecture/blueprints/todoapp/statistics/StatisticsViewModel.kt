@@ -24,12 +24,12 @@ import com.example.android.architecture.blueprints.todoapp.data.TaskRepository
 import com.example.android.architecture.blueprints.todoapp.util.Async
 import com.example.android.architecture.blueprints.todoapp.util.WhileUiSubscribed
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * UiState for the statistics screen.
@@ -71,10 +71,12 @@ class StatisticsViewModel @Inject constructor(
             Async.Loading -> {
                 StatisticsUiState(isLoading = true, isEmpty = true)
             }
+
             is Async.Error -> {
                 // TODO: Show error message?
                 StatisticsUiState(isEmpty = true, isLoading = false)
             }
+
             is Async.Success -> {
                 val stats = getActiveAndCompletedStats(taskLoad.data)
                 StatisticsUiState(
