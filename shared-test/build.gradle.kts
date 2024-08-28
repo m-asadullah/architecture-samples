@@ -27,6 +27,11 @@ android {
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
     }
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
 }
 
 dependencies {
