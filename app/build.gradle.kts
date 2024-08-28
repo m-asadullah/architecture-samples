@@ -90,7 +90,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += setOf("META-INF/AL2.0", "META-INF/LGPL2.1")
         }
