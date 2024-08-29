@@ -16,11 +16,17 @@
 
 package com.example.android.architecture.blueprints.todoapp.util
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 val primaryDarkColor: Color = Color(0xFF263238)
 
@@ -34,6 +40,7 @@ val primaryDarkColor: Color = Color(0xFF263238)
  * @param modifier the modifier to apply to this layout.
  * @param content (slot) the main content to show
  */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun LoadingContent(
     loading: Boolean,
@@ -46,11 +53,20 @@ fun LoadingContent(
     if (empty) {
         emptyContent()
     } else {
-        SwipeRefresh(
-            state = rememberSwipeRefreshState(loading),
-            onRefresh = onRefresh,
-            modifier = modifier,
-            content = content,
-        )
+        val refreshState = rememberPullRefreshState(refreshing = loading, onRefresh = onRefresh)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .pullRefresh(refreshState)
+        ) {
+            Column {
+                content()
+            }
+            PullRefreshIndicator(
+                refreshing = loading,
+                state = refreshState,
+                modifier = Modifier.align(Alignment.TopCenter)
+            )
+        }
     }
 }
